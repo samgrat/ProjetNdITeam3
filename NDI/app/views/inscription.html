@@ -5,64 +5,89 @@
 
   <!-- Navigation -->
 
-  
+
   {% include "navbar.html" %}
 
 
  <header class="masthead">
     <div class="intro-body">
+      {%if message %}
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="alert alert-danger" role="alert">
+            <strong>{{message}}</strong>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <form role="form" name="formulaire">
-              <div class="form-group">
-                <input type="text" class="form-control" id="exampleInputEmail1" name="pseudo" placeholder="Enter pseudo">
-              </div>
 
-              <div class="form-group">  
-                <input type="email" class="form-control" id="exampleInputEmail1" name="mail" placeholder="Enter email">
-              </div>
-
-              <div class="form-group">
-                 <input type="password" class="form-control" id="exampleInputPassword1" name="mdp" placeholder="Password">
-              </div>
-            
-              <div class="form-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" name="mdp_confirm" placeholder="Password">
-              </div>    
-            
-              <button type="button" onclick="inscription()" class="btn btn-default" value="Valider">  Valider</button>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="alert alert-danger" role="alert">
-                <strong>Echec</strong>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="alert alert-danger" role="alert">
-                <strong> Connexion réussi</strong>
-              </div>
-            </div>
-          </div>
-
-        </div>
+  <form role="form" onsubmit="return false">
+    <div class="form-group">
+      <input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
     </div>
-  
-  
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Adresse mail">
+
+    </div>
+    <div class="form-group">
+       <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
+    </div>
+  <div class="form-group">
+    <input type="password" class="form-control" id="confirm_mdp" placeholder="Mot de passe">
+  </div>
+  <button type="submit" id="submit" class="btn btn-default">Valider</button>
+     </div>
+          </div>
+        </div>
+      </div>
 
     </header>
 
- 
-  
+
+
 
 
     <!-- Footer -->
     {% include "footer.html" %}
 
-    <script type="text/javascript" src="js/inscription.js"></script>
+    <script type="text/javascript" src="../js/inscription.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script>
+    //Tentative d'inscription
+    $(document).ready(function(){
+
+       $("#submit").click(function(){
+
+           $.post(
+               'connexion.php',
+               {
+                   email : $("#email").val(),
+                   pseudo : $("#pseudo").val(),
+                   mdp : $("#mdp").val(),
+                   confirm_mdp : $("#confirm_mdp").val()
+               },
+
+               function(data){
+                 var json_obj = $.parseJSON(data);
+
+                 if(json_obj["error"] == 0){
+                   location.href = "inscription.php?success=" + json_obj["messageSuccess"];
+                 }
+                 else{
+                   location.href= "inscription.php?error=" +  json_obj["messageError"];
+                 }
+               },
+
+               'text'
+            );
+
+       });
+   });
+   </script>
 
   </body>
