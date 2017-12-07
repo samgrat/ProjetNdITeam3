@@ -7,11 +7,11 @@
     
 }
 
-#but_amis, #but_soiree{
+#but_amis, #but_reporter{
 	background: #3498db;
 }
 
-#but_reporter, #but_minijeux{
+#but_soiree, #but_minijeux{
 	background : #95a5a6;
 	border-color: #95a5a6;
 }
