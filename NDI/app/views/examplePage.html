@@ -1,0 +1,26 @@
+{% include "exampleHeader.html" %}
+
+<b>Affichage d'un élément simple</b><br>
+<h1>{{text}}</h1>
+
+<br><br>
+
+
+
+<b>Affichage d'un tableau sans clé</b><br>
+<ul>
+{% for user in users %}
+  <li>{{ user }}</li><br>
+{% endfor %}
+</ul>
+
+<br>
+<b>Affichage tableau avec clé: </b> {{ tab.nom }} + {{tab.prenom}}
+<br><br>
+
+<b>Affichage d'un tableau de tableau</b><br>
+<ul>
+{% for tab in tabTab %}
+  <li>Nom = {{ tab.nom }}  prenom = {{tab.prenom }}</li><br>
+{% endfor %}
+</ul>

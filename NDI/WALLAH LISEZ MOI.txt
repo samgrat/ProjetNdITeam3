@@ -1,0 +1,30 @@
+Instalation du serveur
+  Telecharger
+  https://www.apachefriends.org/xampp-files/7.1.11/xampp-linux-x64-7.1.11-0-installer.run
+
+  Changer les droits d'execution du fichier
+  sudo chmod  755 xampp-linux-x64-7.1.11-0-installer.run
+
+  Executer l'installateur
+  sudo ./xampp-linux-x64-7.1.11-0-installer.run
+
+  Copier le contenue de ce dossier dans le dossier du serveur web:
+  cp NDI /opt/lampp/htdocs
+
+C'est maintenant installé, pour lancer l'interface graphique:
+  sudo /opt/lampp/lampp start
+
+Pour créer une nouvelle page *NOM* avec twig:
+  -créer un fichier *NOM*.html dans "app/views/":
+      dans ce fichier mettre uniquement du code html et twig cf examplePage.html pour des exemples.
+
+  -créer un fichier *NOM*.php dans "app/" :
+      -Copiez-y le contenu de app/example.php, modifier le contenu de $page par le nom de votre fichier *NOM*.html
+      -dans ce fichier mettre uniquement du code php, pour modifier le contenu à afficher modifier la valeurs de $args.
+
+
+Pour acceder a votre page:
+    127.0.0.1:80/NDI/app/*NOM*.php
+
+Chemin du dossier du projet:
+    /opt/lampp/htdocs/NDI
