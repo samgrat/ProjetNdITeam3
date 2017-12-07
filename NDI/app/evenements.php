@@ -13,8 +13,6 @@ $page = "index";
 
 echo $twig->render("evenements.html", $args);
 
-<<<<<<< HEAD
+
 ?>
-=======
-?>
->>>>>>> testmerge
+
