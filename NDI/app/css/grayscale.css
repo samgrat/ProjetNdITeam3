@@ -172,6 +172,12 @@ a {
   transition: all 0.3s ease-in-out;
   text-transform: uppercase; }
 
+ 
+  .modal-content {
+    color : black;
+    font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
 .btn-default {
   color: #42DCA3;
   border: 1px solid #42DCA3;
