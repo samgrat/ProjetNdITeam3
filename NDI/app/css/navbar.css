@@ -16,9 +16,10 @@
 /*=== 1. General Structure ===*/
 html,
 body {
-  background: #efefef;
+  background: #efefff;
   padding: 10px;
   font-family: 'Varela Round';
+
 }
 /*=== 2. Anchor Link ===*/
 a {
@@ -31,7 +32,7 @@ a:hover {
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
-  color: #919191;
+  color: #910091;
   padding: 10px 20px;
 }
 .etc-login-form p {
@@ -42,6 +43,9 @@ a:hover {
   max-width: 300px;
   border-radius: 5px;
   display: inline-block;
+  position: relative; /* postulat de départ */
+  top: 50%; left: 50%; /* à 50%/50% du parent référent */
+  transform: translate(-50%, 0%);
 }
 .main-login-form {
   position: relative;
@@ -66,7 +70,7 @@ a:hover {
 }
 .login-form-1 .form-group {
   margin-bottom: 0;
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid #ffffff;
   padding-right: 20px;
   position: relative;
 }
@@ -74,7 +78,7 @@ a:hover {
   border-bottom: 0;
 }
 .login-group {
-  background: #ffffff;
+  background: #EEEEEE;
   color: #999999;
   border-radius: 8px;
   padding: 10px 20px;
@@ -87,13 +91,13 @@ a:hover {
   position: absolute;
   right: -25px;
   top: 50%;
-  background: #ffffff;
+  background: #efefef;
   color: #999999;
   padding: 11px 0;
   width: 50px;
   height: 50px;
   margin-top: -25px;
-  border: 5px solid #efefef;
+  border: 5px solid #ffffff;
   border-radius: 50%;
   transition: all ease-in-out 500ms;
 }
