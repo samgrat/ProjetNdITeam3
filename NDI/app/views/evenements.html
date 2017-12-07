@@ -4,6 +4,20 @@
 
 {% include "header.html" %}
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+      integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+      crossorigin=""></script>
+
+<script type="text/javascript">
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+</script>
 
 <body id="page-top">
 
@@ -16,33 +30,33 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <select class="form-control form-control-md">
+        <select class="form-control form-control-md" id="type_accident">
           <option selected>Type de l'accident ?</option>
           <option>Accident</option>
           <option>Feu</option>
           <option>Météorites</option>
           <option>Destruction de l'univers</option>
         </select>
-        <select class="form-control form-control-md">
-          <option selected>Rayon de la perturbation ?</option>
-          <option>1km - 10km</option>
-          <option>10km - 100km</option>
-          <option>100km - 500km</option>
-          <option>Toute la Terre</option>
-        </select>
-        <select class="form-control form-control-md">
-          <option selected>Où ?</option>
-          <option>Votre position</option>
-          <option>Point sur la carte</option>
+        <select class="form-control form-control-md" onchange="remplissageAuto(this);" id="rayon_accident" name="rayon_accident">
+          <option selected value="0">Rayon de la perturbation ?</option>
+          <option value="500">1km - 2km</option>
+          <option value="1000">2km - 5km</option>
+          <option value="5000">10km - 50km</option>
+          <option value="100000000">Toute la Terre</option>
         </select>
         <button type="submit" onclick="reportEvent()" class="btn btn-default">Valider</button>
       </div>
     </div>
   </div>
 
+  <div id="mapid" ></div>
+
     <!-- Footer -->
     {% include "footer.html" %}
      <script src="js/reportEvent.js"></script>
+     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+      integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+      crossorigin=""></script>
   </body>
 
   </html>

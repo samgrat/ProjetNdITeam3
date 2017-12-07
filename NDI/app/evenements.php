@@ -6,15 +6,7 @@ $loader = new Twig_Loader_Filesystem("views/");
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
-$args["login"] = "LOGIN";
+echo $twig->render("evenements.html");
 
-
-$page = "index";
-
-echo $twig->render("evenements.html", $args);
-
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> testmerge
+

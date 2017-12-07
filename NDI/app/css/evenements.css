@@ -8,3 +8,9 @@ footer {
 	position: absolute;
 	width: 100%;
 }
+
+#mapid {
+	margin-top: 10px;
+	height: 400px;
+	width: 100%;
+}
