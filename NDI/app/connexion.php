@@ -1,3 +1,22 @@
 <?php
-echo "{\"error\" : 1, \"messageError\" : \"Les mots de passes sont différents.\" , \"messageSuccess\" : \"Le compte a bien été créé.\"}";
+require_once("../vendor/autoload.php");
+
+$loader = new Twig_Loader_Filesystem("views/");
+
+$twig = new Twig_Environment($loader,
+			      array("debug" => true));
+
+$args["text"] = "Hello";
+$args["login"] = "LOGIN";
+
+$args = array();
+if(isset($_GET["error"])){
+	$args["message"] = $_GET["error"];
+}
+else if(isset($_GET["success"])){
+	$args["message"] = $_GET["success"];
+}
+
+echo $twig->render("connexion.html", $args);
+
 ?>
