@@ -1,0 +1,3 @@
+function reportEvent(){
+	alert('hello');
+}
