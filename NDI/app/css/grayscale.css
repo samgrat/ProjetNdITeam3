@@ -170,8 +170,7 @@ a {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
-  border-radius: 0; }
+  text-transform: uppercase; }
 
 .btn-default {
   color: #42DCA3;

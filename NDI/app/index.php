@@ -7,6 +7,8 @@ $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
 $args["text"] = "Hello";
+$args["login"] = "LOGIN";
+
 
 $page = "index";
 
