@@ -12,11 +12,7 @@
 	    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 	    crossorigin=""></script>
 
-<script type="text/javascript">function onclick_page(event)
-{
-  var x = event.clientX;
-  var y = event.clientY - 100;
-}
+<script type="text/javascript">
 function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
@@ -45,7 +41,7 @@ function onMapClick(e) {
 	</form>
 
 	position:
-<div id="mapid" style="width: 600px; height: 400px;" onclick="onclick_page(event);"></div>
+<div id="mapid" style="width: 600px; height: 400px;"</div>
 <script>
 	// changer le setView[] pour mettre la position de la map par default
 	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
