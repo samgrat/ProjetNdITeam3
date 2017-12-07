@@ -1,5 +1,5 @@
 function reportEvent(){
-	alert('hello');
+	console.log(circle._latlng.lat + " " + circle._latlng.lng);
 }
 
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
