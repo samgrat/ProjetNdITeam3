@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+crossorigin=""/>
+<style type="text/css">
+#mapid { height: 60vh; width : 90vw;}
+</style>
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+crossorigin=""></script>
+
+<script type="text/javascript">
+  function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+  }
+
+</script>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div style = "width: 90%; margin: 0 auto;">
+        <div id="mapid"></div>
+        <script>
+              // changer le setView[] pour mettre la position de la map par default
+              var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+              mymap.on('click', onMapClick);
+              L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                id: 'mapbox.streets'
+              }).addTo(mymap);
+
+            </script>
+
+
+            <p class="intro-text"></p>
+            <a href="#about" class="btn btn-circle js-scroll-trigger">
+              
+              <i class="fa fa-angle-double-down animated"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+
+
+
+      <!-- Meteo -->
+
+      {% include "meteo.html" %}
+
+
+      <!-- Footer -->
+      {% include "footer.html" %}
+
+    </body>
+
+    </html>

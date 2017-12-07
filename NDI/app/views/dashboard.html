@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+ 
+{% include "header.html" %}
+  <link rel="stylesheet" href="css/dashboard.css" />
+
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+        <br> <br>
+          </div> 
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" id="but_minijeux" class="btn btn-primary btn-lg">Reporter</button>
+          </div>
+          <div class="col-md-6">
+            <a href="#amis" class="js-scroll-trigger">
+              <button type="button" id="but_amis" class="btn btn-primary btn-lg">Amis</button>
+            </a>
+          </div>
+                   
+        </div> 
+        <div class="row">
+        <br> <br> <br> <br> <br> <br> <br>
+          </div>  
+
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" id="but_reporter" class="btn btn-primary btn-lg">Mini Jeux</button>
+          </div>
+          <div class="col-md-6">
+                <button type="button" id="but_amis" class="btn btn-primary btn-lg">Soiree</button>    
+          </div>           
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+    
+
+    <!-- Meteo -->
+
+    {% include "amis.html" %}
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+  </body>
+
+  </html>

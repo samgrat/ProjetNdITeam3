@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="css/evenements.css" rel="stylesheet">
+
+{% include "header.html" %}
+
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+
+  <header class="masthead">
+  <div class="intro-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <select class="form-control form-control-md">
+          <option selected>Type de l'accident ?</option>
+          <option>Accident</option>
+          <option>Feu</option>
+          <option>Météorites</option>
+          <option>Destruction de l'univers</option>
+        </select>
+        <select class="form-control form-control-md">
+          <option selected>Rayon de la perturbation ?</option>
+          <option>1km - 10km</option>
+          <option>10km - 100km</option>
+          <option>100km - 500km</option>
+          <option>Toute la Terre</option>
+        </select>
+        <select class="form-control form-control-md">
+          <option selected>Où ?</option>
+          <option>Votre position</option>
+          <option>Point sur la carte</option>
+        </select>
+        <button type="submit" onclick="reportEvent()" class="btn btn-default">Valider</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+     <script src="js/reportEvent.js"></script>
+  </body>
+
+  </html>
