@@ -1,3 +1,0 @@
-function inscription(){
-	alert('hello');
-}
