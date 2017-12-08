@@ -6,6 +6,8 @@ $loader = new Twig_Loader_Filesystem("views/");
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
-echo $twig->render("evenements.html");
+$args["login"] = "LOGIN";
+
+echo $twig->render("evenements.html", $args);
 ?>
 

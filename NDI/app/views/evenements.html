@@ -12,12 +12,10 @@
       integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
       crossorigin=""></script>
 
-<script type="text/javascript">
-function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-}
+<style type="text/css">
+#mapid { height: 50vh; width : 90vw;}
+</style>
 
-</script>
 
 <body id="page-top">
 
@@ -45,11 +43,12 @@ function onMapClick(e) {
           <option value="100000000">Toute la Terre</option>
         </select>
         <button type="submit" onclick="reportEvent()" class="btn btn-default">Valider</button>
+
       </div>
     </div>
   </div>
-
-  <div id="mapid" ></div>
+  <br>
+  <div id="mapid"  style = "width: 90%; margin: auto; "></div>
 
     <!-- Footer -->
     {% include "footer.html" %}
