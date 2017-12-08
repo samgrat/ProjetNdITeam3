@@ -6,7 +6,7 @@ $loader = new Twig_Loader_Filesystem("views/");
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
-$args["text"] = "Hello";
+
 $args["login"] = "LOGIN";
 
 $args = array();

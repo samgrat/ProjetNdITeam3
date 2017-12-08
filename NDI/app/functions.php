@@ -1,12 +1,105 @@
 <?php
 require("config.php");
 
+
+
+function get_user_info($id, $conn){
+	$stmt = $conn->prepare("SELECT username, mail, taux_sobriete FROM Users WHERE username=?");
+	$stmt->bind_param("s", $id);
+
+	$stmt->execute();
+
+	$username = "";
+	$mail = "";
+	$taux_sobriete = "";
+
+	$stmt->bind_result($username, $mail, $taux_sobriete);
+
+	 /* Récupération des valeurs */
+	 $stmt->fetch();
+
+	if($username == NULL){
+		return array("error" => 1, "messageError" => "Utilisateur introuvable");
+	}
+	else{
+		return array("error" => 0,
+									"username"=>$username,
+									"mail"=>$mail,
+									"taux_sobriete"=>$taux_sobriete);
+	}
+
+}
+
+function get_soiree_info($id, $conn){
+	$stmt = $conn->prepare("SELECT date, coord_x, coord_y, lieu_description, description FROM Soiree WHERE id=?");
+	$stmt->bind_param("s", $id);
+
+	$stmt->execute();
+
+	$date = "";
+	$coord_x = "";
+	$coord_y = "";
+	$lieu_description = "";
+	$description = "";
+
+	$stmt->bind_result($date, $coord_x, $coord_y, $lieu_description, $description);
+
+	 /* Récupération des valeurs */
+	 $stmt->fetch();
+
+	if($date == NULL){
+		return array("error" => 1, "messageError" => "Soirée introuvable");
+	}
+	else{
+		return array("error" => 0,
+									"date"=>$date,
+									"long"=>$coord_x,
+									"lat"=>$coord_y,
+									"lieu_description"=>$lieu_description,
+									"description"=>$description);
+	}
+
+}
+
+function get_event_info($id, $conn){
+	$stmt = $conn->prepare("SELECT date, coord_x, coord_y, description, type, FK_username FROM Evenement WHERE id=?");
+	$stmt->bind_param("s", $id);
+
+	$stmt->execute();
+
+	$date = "";
+	$coord_x = "";
+	$coord_y = "";
+	$description = "";
+	$type = "";
+	$FK_username = "";
+
+	$stmt->bind_result($date, $coord_x, $coord_y, $description, $type, $FK_username);
+
+	 /* Récupération des valeurs */
+	 $stmt->fetch();
+
+	if($date == NULL){
+		return array("error" => 1, "messageError" => "Evenement introuvable");
+	}
+	else{
+		return array("error" => 0,
+									"date"=>$date,
+									"long"=>$coord_x,
+									"lat"=>$coord_y,
+									"description"=>$description,
+									"type"=>$type,
+									"FK_username"=>$FK_username);
+	}
+
+}
+
 function add_user_to_db($data, $conn){
 	if(!isset($data["email"]) || !isset($data["pseudo"]) || !isset($data["mdp"]) || !isset($data["confirm_mdp"])){
-		return array('error' => 1, 'messageError' => "Missing paramter", 'messageSuccess' => null);
+		return array('error' => 1, 'messageError' => "Ajout d'un utilisateur : paramètre(s) manquant(s) ", 'messageSuccess' => null);
 	}
 	if(strcmp($data["mdp"], $data["confirm_mdp"]) !== 0){
-		return array('error' => 1, 'messageError' => "Les mosts de passe ne concordent pas", 'messageSuccess' => null);
+		return array('error' => 1, 'messageError' => "Les mots de passe ne concordent pas", 'messageSuccess' => null);
 	}
 
 	// sanitize input
@@ -21,18 +114,80 @@ function add_user_to_db($data, $conn){
 	$stmt = $conn->prepare("INSERT INTO Users (username, mail, pass) VALUES (?, ?, ?)");
 	$stmt->bind_param("sss", $un, $ma, $pa);
 
-	// set parameters and execute
+	// set parameters and execute by vinc'aub
 	$un = $data["pseudo"];
 	$ma = $data["email"];
 	$pa = $data["mdp"];
 	$res = $stmt->execute();
-	return array('error' => !$res, 'messageError' => null, 'messageSuccess' => "User added");
 
+	if(!$res){
+		return array('error' => 1, 'messageError' => "Un utilisateur est déjà enregistré avec ce pseudo.", 'messageSuccess' => null);
+	}
+	else{
+		return array('error' => 0, 'messageError' => null, 'messageSuccess' => "Compte créé.");
+	}
 }
 
+function add_event_to_db($data, $conn){
+	if(!isset($data["date"]) || !isset($data["long"]) || !isset($data["lat"]) || !isset($data["description"]) || !isset($data["user"]) || !isset($data["rayon"]) || !isset($data["type"])){
+		return array('error' => 1, 'messageError' => "Ajout d'un évènement : paramètre(s) manquant(s)", 'messageSuccess' => null);
+	}
+
+	// sanitize input
+
+	// execute request
+	// Check connection
+	if ($conn->connect_error) {
+	    return array('error' => 1, 'messageError' => 'Erreur de connexion à la base', 'messageSuccess' => null);
+	}
 
 
+	$stmt = $conn->prepare("INSERT INTO Evenement (date, coord_x, coord_y, rayon, description, type, FK_idUser) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	$stmt->bind_param("sddisss", $da, $lo, $la, $r, $d, $t, $u);
 
+	// set parameters and execute
+
+	$da = $data["date"];
+	$lo = $data["long"];
+	$la = $data["lat"];
+	$d = $data["description"];
+	$u = $data["user"];
+	$r = $data["rayon"];
+	$t = $data["type"];
+	$res = $stmt->execute();
+
+	return array('error' => !$res, 'messageError' => "Erreur de l'ajout de l'évènement", 'messageSuccess' => "Evènement bien ajouté");
+}
+
+function add_soiree_to_db($data, $conn){
+	if(!isset($data["date"]) || !isset($data["long"]) || !isset($data["lat"]) || !isset($data["description"]) || !isset($data["user"])){
+		return array('error' => 1, 'messageError' => "Ajout de la soirée : paramètre(s) manquant(s)", 'messageSuccess' => null);
+	}
+
+	// sanitize input
+
+	// execute request
+	// Check connection
+	if ($conn->connect_error) {
+	    return array('error' => 1, 'messageError' => 'Erreur de connexion à la base', 'messageSuccess' => null);
+	}
+
+
+	$stmt = $conn->prepare("INSERT INTO Soiree (date, coord_x, coord_y, description, FK_idUserOrga) VALUES (?, ?, ?, ?, ?)");
+	$stmt->bind_param("sddss", $da, $lo, $la, $d, $u);
+
+	// set parameters and execute
+
+	$da = $data["date"];
+	$lo = $data["long"];
+	$la = $data["lat"];
+	$d = $data["description"];
+	$u = $data["user"];
+	$res = $stmt->execute();
+
+	return array('error' => !$res, 'messageError' => "Erreur de l'ajout de la soirée", 'messageSuccess' => "La soirée a bien été ajoutée");
+
+}
 
 
 

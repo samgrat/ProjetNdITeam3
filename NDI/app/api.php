@@ -27,7 +27,7 @@
 	    		}
 
 	    		break;
-	    	
+
 	    	case 'event':
 	    		$action = $arr[1];
 	    		switch ($action) {
@@ -42,7 +42,7 @@
 
 	    				$res = add_event_to_db($data, $conn);
 	    				break;
-	  
+
 	    		}
 
 	    	case 'soiree':
@@ -58,7 +58,7 @@
 	    				$res = add_soiree_to_db($data, $conn);
 	    				break;
 
-	  
+
 	    		}
 
 	    }
@@ -68,18 +68,16 @@
 	if($_SERVER['REQUEST_METHOD'] == "GET"){
 		 switch ($arr[0]) {
 	    	case 'user':
-	    		$id = $arr[1];
+	    				$id = $arr[1];
 	    				$res = get_user_info($id, $conn);
 	    				break;
-	    		}
-
 	    		break;
-	    	
+
 	    	case 'event':
 	    		$id = $arr[1];
 	    		$res = get_event_info($id, $conn);
 	    		break;
-	    		
+
 	    	case 'soiree':
 	    		$id = $arr[1];
 	    		$res = get_soiree_info($id, $conn);
