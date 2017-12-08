@@ -8,6 +8,6 @@ $twig = new Twig_Environment($loader,
 
 $args["login"] = "LOGIN";
 
-echo $twig->render("jeuxPuzzle.html", $args);
+echo $twig->render("jeuQuizz.html", $args);
 ?>
 

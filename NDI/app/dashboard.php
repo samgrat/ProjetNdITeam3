@@ -3,10 +3,18 @@ ini_set('display_errors', 1);
 require_once("../vendor/autoload.php");
 require_once("config.php");
 
+
 $loader = new Twig_Loader_Filesystem("views/");
+
+session_start();
+$args=array();
+if(isset($_SESSION["pseudo"])){
+	$args["login"] = $_SESSION["pseudo"];
+}
 
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
+
 
 $args = array();
 session_start();
@@ -36,7 +44,7 @@ function get_events_of_user($login, $conn){
 
 	function get_friends($login, $conn){
 		// get friends
-		$stmt = $conn->prepare("SELECT username2 FROM Friends2 WHERE username1 = ?");
+		$stmt = $conn->prepare("SELECT username FROM Friends2 WHERE username1 = ?");
 		$stmt->bind_param("s", $login);
 		$stmt->bind_result($username1);
 		$stmt->execute();
@@ -66,6 +74,7 @@ function get_events_of_user($login, $conn){
 	$args["tabSoiree"] = get_events_of_user($args["login"], $conn);
 
 	$args["friendsTab"] = get_friends($args["login"], $conn);
+
 
 
 $page = "dashboard";

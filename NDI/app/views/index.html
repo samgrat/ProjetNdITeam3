@@ -12,8 +12,10 @@ crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 crossorigin=""></script>
-<link href="css/index.css" rel="stylesheet">
+<link href="css/grayscale.css" rel="stylesheet">
 
+
+<link href="css/meteo.css" rel="stylesheet">
 
 
 <body id="page-top">
@@ -96,7 +98,56 @@ crossorigin=""></script>
 
 <!-- Meteo -->
 
-{% include "meteo.html" %}
+
+<div class="container">
+
+<section id="about" class="content-section text-center">
+
+ <div class="container" style="margin: auto auto; max-width: 400px;">
+
+
+  <div id="card" class="weater">
+    <div class="city-selected">
+      <article>
+
+        <div class="info">
+          <div class="city"><span>Ville :</span> {{param.nom}}</div>
+          <div class="night">Humidité - {{param.humidite}}%</div>
+          <div class="night">Pression - {{param.pression}}</div>
+
+          <div class="temp">{{param.temp}}°</div>
+          <div class="icon" style="float: right;">
+
+            <g>
+             <img id="logo" src={{param.image}}>
+           </svg>
+         </div>
+         <br>
+         <br>
+         <div class="wind" ">
+          <g >
+            <g>
+              <g>
+                <img id="vent" src="img/wind.png">
+              </g>
+            </g>
+          </g>
+
+          <span>{{param.speed}} km/h</span>
+        </div>
+      </div>
+
+
+    </article>
+
+  </div>
+</div>
+
+</div>
+
+</section>
+
+</div>
 
 <!-- Footer -->
 {% include "footer.html" %}

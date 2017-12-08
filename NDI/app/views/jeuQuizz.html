@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="./css/jeuxPuzzle.css" rel="stylesheet">
+
+{% include "header.html" %}
+
+
+<body id="page-top" onLoad="charge_p();">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+
+ <header class="masthead">
+
+  <div class="intro-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto" style="height: 20%">
+      	<p>Première question : Quel est le taux d'alcoolémie maximum pour prendre le volant? </p>
+        <select onchange="remplissageAuto(this)" class="form-control form-control-md" id="question1">
+        	<option name="question1_answers" value="0" id="0" >Choix</option>
+        	<option name="question1_answers" value="A" id="1">0.8g/L</option>
+        	<option name="question1_answers" value="B" id="2">0.1g/L</option>
+        	<option name="question1_answers" value="C" id="3">0.5g/L</option>
+        	<option name="question1_answers" value="D" id="4">0.2g/L</option>
+        </select>
+        <p>Deuxieme question: Etes vous bourré?: </p>
+        <select onchange="remplissageAuto1(this)" class="form-control form-control-md" id="question2">
+        	<option name="question1_answers" value="0" id="0">Choix</option>
+        	<option name="question1_answers" value="A" id="1">Oui</option>
+        	<option name="question1_answers" value="B" id="2">Non</option>
+        	<option name="question1_answers" value="C" id="3">Peut-être</option>
+        	<option name="question1_answers" value="D" id="4">Je sais plus</option>
+        </select>
+        <p>Troisième question : Combien y a t-il de mort en France sur les routes en 2016 ?</p>
+        <select onchange="remplissageAuto2(this)" class="form-control form-control-md" id ="question3">
+        	<option name="question1_answers" value="0" id="0">Choix</option>
+        	<option name="question1_answers" value="A" id="1">3 469</option>
+        	<option name="question1_answers" value="B" id="2">4 396</option>
+        	<option name="question1_answers" value="C" id="3">9 463</option>
+        	<option name="question1_answers" value="D" id="4">6 394</option>
+        </select>
+
+        <button type="submit" class="btn btn-default" onclick="affiche()" method="post" id="quiz" >Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mapid" ></div>
+  {% include "footer.html" %}
+   <script src="js/minijeux.js"></script>
+
+   </body>
+
+  </html>

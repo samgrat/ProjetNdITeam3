@@ -37,7 +37,7 @@ foreach ($list[0] as $key2 => $value2) {
           }else{ $humidite = False;}
         }
       }
-  }
+    }
 
   }
   if($key2 == "wind"){
@@ -50,7 +50,7 @@ foreach ($list[0] as $key2 => $value2) {
 
     }else{$vitessevent = NULL;}
 
-    }
+  }
   if($key2 == "rain"){
     if($value2 != NULL){
       $pluie = True;
@@ -82,22 +82,20 @@ foreach ($list[0] as $key2 => $value2) {
         }
       }
     }else{ $tempsprincipal = NULL;
-    $description = NULL;}
+      $description = NULL;}
+    }
   }
-  }
 
-<<<<<<< HEAD
+  $args["param"]["nom"] = $name;
+  $args["param"]["temp"] = $temperature;
+  $args["param"]["pression"] = $pression;
+  $args["param"]["humidite"] = $humidite;
+  $args["param"]["speed"] = $vitessevent;
+  $args["param"]["pluie"] = $pluie;
+  $args["param"]["neige"] = $neige;
+  $args["param"]["nuageux"] = $nuageux;
 
-=======
->>>>>>> 59990e9dfce5b67a9bc7cc13af468d6e001e728a
-    var_dump($temperature);
-    var_dump($pression);
-    var_dump($humidite);
-    var_dump($vitessevent);
-    var_dump($pluie);
-    var_dump($neige);
-    var_dump($nuageux);
-    var_dump($tempsprincipal);
-    var_dump($description);
 
-?>
+
+  ?>
+
