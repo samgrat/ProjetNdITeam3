@@ -1,7 +1,7 @@
 <?php
 require_once("../vendor/autoload.php");
-
 require_once("config.php");
+
 
 $loader = new Twig_Loader_Filesystem("views/");
 
@@ -13,6 +13,7 @@ if(isset($_SESSION["pseudo"])){
 
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
+
 
 $args = array();
 session_start();
@@ -72,6 +73,7 @@ function get_events_of_user($login, $conn){
 	$args["tabSoiree"] = get_events_of_user($args["login"], $conn);
 
 	$args["friendsTab"] = get_friends($args["login"], $conn);
+
 
 
 $page = "dashboard";
