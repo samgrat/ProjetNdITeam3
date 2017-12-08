@@ -1,13 +1,18 @@
 <?php
 require_once("../vendor/autoload.php");
-session_start();
 
 $loader = new Twig_Loader_Filesystem("views/");
+
+session_start();
+$args=array();
+if(isset($_SESSION["pseudo"])){
+	$args["login"] = $_SESSION["pseudo"];
+}
 
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
-$args["login"] = "LOGIN";
+
 $args["tabSoiree"] = array(
 	array("nom" => "soire boloss", "date" => "2/12/2017"),
 	array("nom" => "soiree jeudi", "date" => "2/12/2017"),
