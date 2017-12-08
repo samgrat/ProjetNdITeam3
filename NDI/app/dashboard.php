@@ -41,19 +41,23 @@ function get_events_of_user($login, $conn){
 		$stmt->execute();
 
 		$arr = [];
+		$i = 0;
 		while($stmt->fetch()){
-			$st = $conn->prepare("SELECT mail, taux_sobriete FROM Users WHERE username = ?");
-			$st->bind_param("s", $username1);
-
-			$st->bind_result($mail, $taux_sobriete);
-			$st->execute();
-			$st->fetch();
-
-			$arr[] = array("username" => $username1, "email" => $mail, "sobriete" => $taux_sobriete);
-			echo("I ");
+			$arra[$i] = array($username1);
+			$i++;
 		}
-		echo("DUMP:");
-			var_dump($arr);
+
+		for( $j = 0; $j < $i; $j++){
+			$deuxiemeRequete = $conn->prepare("SELECT taux_sobriete, mail   FROM Users WHERE username=?");
+			$deuxiemeRequete->bind_param("s", $username1);
+			$deuxiemeRequete->bind_result($taux, $mail);
+			$deuxiemeRequete->execute();
+
+			while($deuxiemeRequete->fetch()){
+				$arr[$i] = array("username" => $username1, "email" => $mail, "sobriete" => $taux);
+			}
+			$j++;
+		}
 
 		return $arr;
 	}
