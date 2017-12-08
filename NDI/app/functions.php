@@ -10,12 +10,11 @@ function add_user_to_db($data, $conn){
 	}
 
 	// sanitize input
-	// execute request
-	//$conn = new mysqli($servername, $username, $password, $dbname);
 
+	// execute request
 	// Check connection
 	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
+	    return array('error' => 1, 'messageError' => 'Erreur de connexion à la base', 'messageSuccess' => null);
 	}
 
 
@@ -26,8 +25,8 @@ function add_user_to_db($data, $conn){
 	$un = $data["pseudo"];
 	$ma = $data["email"];
 	$pa = $data["mdp"];
-	$stmt->execute();
-	return array('error' => 0, 'messageError' => null, 'messageSuccess' => "User added");
+	$res = $stmt->execute();
+	return array('error' => !$res, 'messageError' => null, 'messageSuccess' => "User added");
 
 }
 
