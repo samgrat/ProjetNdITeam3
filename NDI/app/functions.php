@@ -1,7 +1,7 @@
 <?php
 require("config.php");
 session_start();
-
+ini_set('display_errors', 'On');
 
 
 function get_user_info($id, $conn){
@@ -98,7 +98,7 @@ function get_event_info($id, $conn){
 				$i++;
 	   }
 
-		if($ret[0]["date"] == NULL){
+		if($ret[0]["long"] == NULL){
 			return array("error" => 1, "messageError" => "Evenement introuvable");
 		}
 		else{

@@ -6,7 +6,6 @@ require_once("config.php");
 
 $loader = new Twig_Loader_Filesystem("views/");
 
-session_start();
 $args=array();
 if(isset($_SESSION["pseudo"])){
 	$args["login"] = $_SESSION["pseudo"];
@@ -52,7 +51,7 @@ function get_events_of_user($login, $conn){
 		$arr = [];
 		$i = 0;
 		while($stmt->fetch()){
-			$arra[$i] = array($username1);
+			$arr[$i] = array($username1);
 			$i++;
 		}
 
@@ -73,7 +72,7 @@ function get_events_of_user($login, $conn){
 
 	$args["tabSoiree"] = get_events_of_user($args["login"], $conn);
 
-	$args["friendsTab"] = get_friends($args["login"], $conn);
+	//$args["friendsTab"] = get_friends($args["login"], $conn);
 
 
 
