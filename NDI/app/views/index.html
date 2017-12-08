@@ -13,12 +13,6 @@ crossorigin=""/>
 integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 crossorigin=""></script>
 
-<script type="text/javascript">
-  function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-  }
-
-</script>
 
 <body id="page-top">
 
@@ -35,51 +29,50 @@ crossorigin=""></script>
         <div id="mapid"></div>
         <script>
               // changer le setView[] pour mettre la position de la map par default
-              var pos;
               $.get("http://ipinfo.io", function (response) {
 
-                pos = response.loc.split(",", 2);
+               var pos = response.loc.split(",", 2);
 
-                var mymap = L.map('mapid').setView([pos[0], pos[1]], 13);
-                mymap.on('click', onMapClick);
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-                  maxZoom: 18,
-                  id: 'mapbox.streets'
-                }).addTo(mymap);
+               var mymap = L.map('mapid').setView([pos[0], pos[1]], 13);
 
-              }, "jsonp");
+               L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                id: 'mapbox.streets'
+              }).addTo(mymap);
 
-            </script>
+             }, "jsonp");
+
+           </script>
 
 
-            <p class="intro-text"></p>
+           <p class="intro-text"></p>
 
-            <a href="#about" class="btn btn-circle js-scroll-trigger">
+           <a href="#about" class="btn btn-circle js-scroll-trigger">
 
-              <i class="fa fa-angle-double-down animated"></i>
-            </a>
-          </div>
-          <br>
-          <h4>METEO</h4>
+            <i class="fa fa-angle-double-down animated"></i>
+          </a>
         </div>
-      </header>
+        <br>
+        <h4>METEO</h4>
+      </div>
+    </header>
 
 
 
 
-      <!-- Meteo -->
+    <!-- Meteo -->
 
-      {% include "meteo.html" %}
-
-
-      <!-- Footer -->
-      {% include "footer.html" %}
-
-      <script>
+    {% include "meteo.html" %}
 
 
-      </script>
+    <!-- Footer -->
+    {% include "footer.html" %}
 
-    </body>
+    <script>
 
-    </html>
+
+    </script>
+
+  </body>
+
+  </html>
