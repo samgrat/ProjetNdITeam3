@@ -1,5 +1,11 @@
 <?php
 
+require_once("../vendor/autoload.php");
+
+$loader = new Twig_Loader_Filesystem("views/");
+
+$twig = new Twig_Environment($loader,
+			      array("debug" => true));
 
 $args["friendsTab"] = array(
 	array("username" => "toto", "email" => "toto@gmail.com", "sobriete" => "20"),
@@ -7,5 +13,8 @@ $args["friendsTab"] = array(
 	array("username" => "tata", "email" => "titi@gmail.com", "sobriete" => "100")
 );
 
-<input id="checkBox" type="checkbox">
+$page = "creationsoiree.html";
+
+echo $twig->render("creationsoiree.html", $args);
+
 ?>
