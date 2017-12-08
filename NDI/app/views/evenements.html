@@ -67,12 +67,12 @@ footer {
   <script>
   $(document).ready(function(){
      $("#submit").click(function(){
-       console.log(circle._latlng.lat);
+       console.log($("#rayon_accident").val());
       	$.post(
       			'api.php?event/add',
       			{
-      					lat : circle._latlng.lat,
-      					long : circle._latlng.lng,
+      					lat : circle._latlng.lng,
+      					long : circle._latlng.lat,
       					date : "NOW()",
       					description : "NYI",
       					type : $("#type_accident").val(),
