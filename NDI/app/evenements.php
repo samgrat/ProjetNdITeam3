@@ -8,6 +8,7 @@ $twig = new Twig_Environment($loader,
 
 $args = array();
 session_start();
+$args=array();
 if(isset($_SESSION["pseudo"])){
 	$args["login"] = $_SESSION["pseudo"];
 }
