@@ -12,6 +12,8 @@ crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 crossorigin=""></script>
+<link href="css/index.css" rel="stylesheet">
+
 
 
 <body id="page-top">
@@ -28,51 +30,83 @@ crossorigin=""></script>
       <div style = "width: 90%; margin: 0 auto;">
         <div id="mapid"></div>
         <script>
-              // changer le setView[] pour mettre la position de la map par default
-              $.get("http://ipinfo.io", function (response) {
 
-               var pos = response.loc.split(",", 2);
+        // changer le setView[] pour mettre la position de la map par default
+        $.get("http://ipinfo.io", function (response) {
 
-               var mymap = L.map('mapid').setView([pos[0], pos[1]], 13);
+         var pos = response.loc.split(",", 2);
 
-               L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-                maxZoom: 18,
-                id: 'mapbox.streets'
-              }).addTo(mymap);
+         var mymap = L.map('mapid').setView([pos[0], pos[1]], 13);
+         mymap.id = "mymap";
 
-             }, "jsonp");
+         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          maxZoom: 18,
+          id: 'mapbox.streets'
+        }).addTo(mymap);
 
-           </script>
+        //AJAX request
+        $(document).ready(function(){
+         $.get(
+           'api.php?event/-1',
 
-
-           <p class="intro-text"></p>
-
-           <a href="#about" class="btn btn-circle js-scroll-trigger">
-
-            <i class="fa fa-angle-double-down animated"></i>
-          </a>
-        </div>
-        <br>
-        <h4>METEO</h4>
-      </div>
-    </header>
+           function(data){
+             var json_obj = $.parseJSON(data);
 
 
 
+             for(var i = 0; i < json_obj.length; i++){
+               var circle = L.circle([json_obj[i]["long"], json_obj[i]["lat"]], {
+                 color: 'red',
+                 fillColor: '#f03',
+                 fillOpacity: 0.5,
+                 radius: json_obj[i]["rayon"]
+               });
 
-    <!-- Meteo -->
+               circle.addTo(mymap);
+             }
+           },
+           'text'
+           );
 
-    {% include "meteo.html" %}
+       });
 
+      }, "jsonp");
 
-    <!-- Footer -->
-    {% include "footer.html" %}
-
-    <script>
 
 
     </script>
 
-  </body>
 
-  </html>
+    <p class="intro-text"></p>
+
+    <a href="#about" class="btn btn-circle js-scroll-trigger">
+
+      <i class="fa fa-angle-double-down animated"></i>
+    </a>
+  </div>
+  <br>
+  <h4>METEO</h4>
+
+
+</div>
+</header>
+
+
+
+
+<!-- Meteo -->
+
+{% include "meteo.html" %}
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+<script>
+
+
+
+</script>
+
+</body>
+
+</html>
