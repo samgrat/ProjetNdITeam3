@@ -86,6 +86,7 @@ foreach ($list[0] as $key2 => $value2) {
   }
   }
 
+
     var_dump($temperature);
     var_dump($pression);
     var_dump($humidite);
