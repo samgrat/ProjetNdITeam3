@@ -155,7 +155,7 @@ function add_event_to_db($data, $conn){
 
 
 	$stmt = $conn->prepare("INSERT INTO Evenement (date, coord_x, coord_y, description, type, FK_username, rayon) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	$stmt->bind_param("sddisss", $da, $lo, $la, $r, $d, $t, $u);
+	$stmt->bind_param("sddisss", $da, $lo, $la, $d, $t, $u, $r);
 
 	// set parameters and execute
 
