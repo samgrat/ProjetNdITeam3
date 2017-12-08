@@ -1,9 +1,7 @@
 <?php
 require_once("../vendor/autoload.php");
-<<<<<<< HEAD
-=======
 require_once("config.php");
->>>>>>> origin/FrontEnd
+
 
 $loader = new Twig_Loader_Filesystem("views/");
 
@@ -16,20 +14,7 @@ if(isset($_SESSION["pseudo"])){
 $twig = new Twig_Environment($loader,
 			      array("debug" => true));
 
-<<<<<<< HEAD
 
-$args["tabSoiree"] = array(
-	array("nom" => "soire boloss", "date" => "2/12/2017"),
-	array("nom" => "soiree jeudi", "date" => "2/12/2017"),
-	array("nom" => "ricm party", "date" => "2/12/2017")
-);
-
-$args["friendsTab"] = array(
-	array("username" => "toto", "email" => "toto@gmail.com", "sobriete" => "20"),
-	array("username" => "titi", "email" => "tata@gmail.com", "sobriete" => "50"),
-	array("username" => "tata", "email" => "titi@gmail.com", "sobriete" => "100")
-);
-=======
 $args = array();
 session_start();
 if(isset($_SESSION["pseudo"])){
@@ -88,7 +73,7 @@ function get_events_of_user($login, $conn){
 	$args["tabSoiree"] = get_events_of_user($args["login"], $conn);
 
 	$args["friendsTab"] = get_friends($args["login"], $conn);
->>>>>>> origin/FrontEnd
+
 
 
 $page = "dashboard";
