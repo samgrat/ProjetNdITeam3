@@ -9,7 +9,7 @@
   {% include "navbar.html" %}
 
 
- <header class="masthead">
+  <header class="masthead">
     <div class="intro-body">
       {%if message %}
       <div class="row">
@@ -21,64 +21,66 @@
       </div>
       {% endif %}
 
-      <div class="container">
+      <div class="container" style="font-family: 'Cabin'">
         <div class="row">
           <div class="col-lg-8 mx-auto">
 
-  <form role="form" onsubmit="return false">
-    <div class="form-group">
-      <input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
-    </div>
-    <div class="form-group">
-       <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
-    </div>
-  <button type="submit" id="submit" class="btn btn-default">Connexion</button>
+            <form role="form" onsubmit="return false">
+              <div class="form-group">
+                <input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
+              </div>
+              <div class="form-group">
+               <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
+             </div>
+             Nouveau utilisateur ? 
+             <a  href="inscription.php">Créer un compte</a>
+             <button type="submit" id="submit" class="btn btn-default">conenxion</button>
+           </div>
+         </div>
+       </div>
      </div>
-          </div>
-        </div>
-      </div>
 
-    </header>
+   </header>
 
 
 
 
 
-    <!-- Footer -->
-    {% include "footer.html" %}
+   <!-- Footer -->
+   {% include "footer.html" %}
 
-    <script type="text/javascript" src="../js/inscription.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+   <script type="text/javascript" src="../js/inscription.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-    <script>
+   <script>
     //Tentative de conenxion
     $(document).ready(function(){
 
-       $("#submit").click(function(){
+     $("#submit").click(function(){
 
-           $.post(
-               'connexionn.php',
-               {
-                   pseudo : $("#pseudo").val(),
-                   mdp : $("#mdp").val()
-               },
+       $.post(
+         'connexionn.php',
+         {
+           pseudo : $("#pseudo").val(),
+           mdp : $("#mdp").val()
+         },
 
-               function(data){
-                 var json_obj = $.parseJSON(data);
+         function(data){
+           var json_obj = $.parseJSON(data);
 
-                 if(json_obj["error"] == 0){
-                   location.href = "connexion.php?success=" + json_obj["messageSuccess"];
-                 }
-                 else{
-                   location.href = "connexion.php?error=" +  json_obj["messageError"];
-                 }
-               },
+           if(json_obj["error"] == 0){
+             location.href = "connexion.php?success=" + json_obj["messageSuccess"];
+           }
+           else{
+             location.href = "connexion.php?error=" +  json_obj["messageError"];
+           }
+         },
 
-               'text'
-            );
+         'text'
+         );
 
-       });
+     });
    });
-   </script>
+ </script>
 
-  </body>
+</body>
