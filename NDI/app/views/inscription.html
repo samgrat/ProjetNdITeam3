@@ -64,7 +64,7 @@
        $("#submit").click(function(){
 
            $.post(
-               'connexion.php',
+               'api.php?user/add',
                {
                    email : $("#email").val(),
                    pseudo : $("#pseudo").val(),
