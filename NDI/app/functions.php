@@ -123,7 +123,7 @@ function add_user_to_db($data, $conn){
 	}
 
 
-	$stmt = $conn->prepare("INSERT INTO Users (username, mail, pass) VALUES (?, ?, ?)");
+	$stmt = $conn->prepare("INSERT INTO Users (username, mail, pass, taux_sobriete, lost_pass) VALUES (?, ?, ?, 15, 0)");
 	$stmt->bind_param("sss", $un, $ma, $pa);
 
 	// set parameters and execute by vinc'aub
@@ -154,12 +154,12 @@ function add_event_to_db($data, $conn){
 	}
 
 
-	$stmt = $conn->prepare("INSERT INTO Evenement (date, coord_x, coord_y, description, type, FK_username, rayon) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	$stmt->bind_param("sddisss", $da, $lo, $la, $d, $t, $u, $r);
+	$stmt = $conn->prepare("INSERT INTO Evenement (coord_x, coord_y, description, type, FK_username, rayon) VALUES (?, ?, ?, ?, ?, ?)");
+	$stmt->bind_param("ddisss", $lo, $la, $d, $t, $u, $r);
 
 	// set parameters and execute
 
-	$da = $data["date"];
+	//$da = $data["date"];
 	$lo = $data["long"];
 	$la = $data["lat"];
 	$d = $data["description"];
