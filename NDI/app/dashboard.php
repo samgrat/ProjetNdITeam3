@@ -35,7 +35,7 @@ function get_events_of_user($login, $conn){
 
 	function get_friends($login, $conn){
 		// get friends
-		$stmt = $conn->prepare("SELECT username2 FROM Friends2 WHERE username1 = ?");
+		$stmt = $conn->prepare("SELECT username FROM Friends2 WHERE username1 = ?");
 		$stmt->bind_param("s", $login);
 		$stmt->bind_result($username1);
 		$stmt->execute();
