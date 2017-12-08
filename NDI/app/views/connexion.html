@@ -57,20 +57,18 @@
        $("#submit").click(function(){
 
            $.post(
-               'connexionn.php',
+             'connexionManager.php',
                {
                    pseudo : $("#pseudo").val(),
                    mdp : $("#mdp").val()
                },
 
                function(data){
-                 var json_obj = $.parseJSON(data);
-
-                 if(json_obj["error"] == 0){
-                   location.href = "connexion.php?success=" + json_obj["messageSuccess"];
+                 if(data == "1"){
+                   location.href = "index.php";
                  }
                  else{
-                   location.href = "connexion.php?error=" +  json_obj["messageError"];
+                   location.href = "connexion.php?error=Nom de compte ou mot de passe non valide";
                  }
                },
 

@@ -74,7 +74,7 @@
 
                function(data){
                  var json_obj = $.parseJSON(data);
-
+                 
                  if(json_obj["error"] == 0){
                    location.href = "inscription.php?success=" + json_obj["messageSuccess"];
                  }
