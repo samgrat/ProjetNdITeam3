@@ -1,7 +1,6 @@
-function addUser(){
-	var x = document.getElementById('name').innerHTML;
-	alert(x);
 
-    
 
-}
+  function 	addUser(){
+	var	check = document.getElementById('check').value
+	alert(check);
+  }

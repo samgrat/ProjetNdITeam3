@@ -30,11 +30,11 @@
                 <tr>
                     <td>
                         <label class="custom-control custom-checkbox">
-                            <input id="check" value="1" type="checkbox" name="" class="custom-control-input">
+                            <input onchange="remplissageAuto(this);" value="1" type="checkbox" name="" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                         </label>
                     </td>
-                    <td id="name">{{tab.username}}</td>
+                    <td id="{{tab.username}}">{{tab.username}}</td>
                     <td>{{tab.sobriete}}</td>
                 </tr>
                 {% endfor %}   

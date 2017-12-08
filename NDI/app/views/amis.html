@@ -16,7 +16,18 @@
 
   <section id="amis" class="content-section text-center">
   <div class="container">
-    <h2>Mes Amis</h2>
+    <div class="row">
+      <h2>Recherche d'amis</h2>
+      <div class="container">  
+        <div class="search">
+        <input type="text" id="friend" class="form-control input-sm" maxlength="64" placeholder="Search" />
+        <button type="button" onclick="searchFriend();" class="btn btn-secondary">Chercher</button>
+        </div>
+      </div>
+    </div>
+    
+  <div class="row">
+    <h2 >Mes Amis</h2>
     <table class="table">
       <thead>
         <tr>
@@ -41,10 +52,15 @@
       {% endfor %}
       </tbody>
     </table>
+  </div>  
   </div>
+    
   </section>
-
-
-
   </body>
+  <script type="text/javascript">
+    function searchFriend(){
+      var name = document.getElementById('friend').value;
+      alert(name);
+    }
+  </script>
 </html>
