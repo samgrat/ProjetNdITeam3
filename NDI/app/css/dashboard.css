@@ -15,3 +15,21 @@
 	background : #95a5a6;
 	border-color: #95a5a6;
 }
+
+.row{
+	padding-left: 30vh;
+}
+
+.col-md-4{
+	background: #e74c3c;
+	margin: 20px;
+}
+
+h1{
+	text-align: center;
+	margin: auto;
+	padding: 25px;
+}
+
+
+
