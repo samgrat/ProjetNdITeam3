@@ -1,7 +1,8 @@
+$.get("http://ipinfo.io", function (response) {
 function reportEvent(){
 	console.log(circle._latlng.lat + " " + circle._latlng.lng);
 }
-$.get("http://ipinfo.io", function (response) {
+
 
  var pos = response.loc.split(",", 2);
 
@@ -14,7 +15,7 @@ $.get("http://ipinfo.io", function (response) {
   'Imagery © <a href="http://mapbox.com">Mapbox</a>',
   id: 'mapbox.streets'
 }).addTo(mymap);
-}, "jsonp");
+
 
 var circle = L.circle([51.508, -0.11], {
   color: 'red',
@@ -42,3 +43,5 @@ function Recup_select_info(obj,choix_rech){
   function remplissageAuto(obj) {
     valeur_alias = Recup_select_info(obj,'valeur');
   }
+
+}, "jsonp");
