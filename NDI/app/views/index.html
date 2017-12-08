@@ -12,6 +12,8 @@ crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
 integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
 crossorigin=""></script>
+<link href="css/index.css" rel="stylesheet">
+
 
 
 <body id="page-top">
@@ -44,66 +46,67 @@ crossorigin=""></script>
 
         //AJAX request
         $(document).ready(function(){
-               $.get(
-                   'api.php?event/-1',
+         $.get(
+           'api.php?event/-1',
 
-                   function(data){
-                     var json_obj = $.parseJSON(data);
+           function(data){
+             var json_obj = $.parseJSON(data);
 
 
 
-                     for(var i = 0; i < json_obj.length; i++){
-                       var circle = L.circle([json_obj[i]["long"], json_obj[i]["lat"]], {
-                         color: 'red',
-                         fillColor: '#f03',
-                         fillOpacity: 0.5,
-                         radius: json_obj[i]["rayon"]
-                       });
+             for(var i = 0; i < json_obj.length; i++){
+               var circle = L.circle([json_obj[i]["long"], json_obj[i]["lat"]], {
+                 color: 'red',
+                 fillColor: '#f03',
+                 fillOpacity: 0.5,
+                 radius: json_obj[i]["rayon"]
+               });
 
-                       circle.addTo(mymap);
-                     }
-                    },
-                   'text'
-                );
+               circle.addTo(mymap);
+             }
+           },
+           'text'
+           );
 
        });
 
-       }, "jsonp");
-
-
-
-           </script>
-
-
-           <p class="intro-text"></p>
-
-           <a href="#about" class="btn btn-circle js-scroll-trigger">
-
-            <i class="fa fa-angle-double-down animated"></i>
-          </a>
-        </div>
-        <br>
-        <h4>METEO</h4>
-      </div>
-    </header>
-
-
-
-
-    <!-- Meteo -->
-
-    {% include "meteo.html" %}
-
-
-    <!-- Footer -->
-    {% include "footer.html" %}
-
-    <script>
+      }, "jsonp");
 
 
 
     </script>
 
-  </body>
 
-  </html>
+    <p class="intro-text"></p>
+
+    <a href="#about" class="btn btn-circle js-scroll-trigger">
+
+      <i class="fa fa-angle-double-down animated"></i>
+    </a>
+  </div>
+  <br>
+  <h4>METEO</h4>
+
+
+</div>
+</header>
+
+
+
+
+<!-- Meteo -->
+
+{% include "meteo.html" %}
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+<script>
+
+
+
+</script>
+
+</body>
+
+</html>
