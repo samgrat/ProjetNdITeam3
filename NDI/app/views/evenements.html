@@ -47,7 +47,7 @@ footer {
           <option value="5000">10km - 50km</option>
           <option value="100000000">Toute la Terre</option>
         </select>
-        <button type="submit" onclick="reportEvent()" class="btn btn-default">Valider</button>
+        <button id="submit" type="submit" onclick="return false" class="btn btn-default">Valider</button>
 
       </div>
     </div>
@@ -57,10 +57,61 @@ footer {
 
     <!-- Footer -->
     {% include "footer.html" %}
-     <script src="js/reportEvent.js"></script>
      <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
       integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
       crossorigin=""></script>
   </body>
 
   </html>
+
+  <script>
+  $(document).ready(function(){
+     $("#submit").click(function(){
+       console.log(circle._latlng.lat);
+      	$.post(
+      			'api.php?event/add',
+      			{
+      					lat : circle._latlng.lat,
+      					long : circle._latlng.lng,
+      					date : "NOW()",
+      					description : "NYI",
+      					type : $("#type_accident").val(),
+      					user : "{{login}}",
+      					rayon : $("#rayon_accident").val()
+      			},
+      			function(data){
+              console.log(data);
+      				var json_obj = $.parseJSON(data);
+      			},
+      			'text'
+      	 );
+      });
+    });
+  $.get("http://ipinfo.io", function (response) {
+  	 var pos = response.loc.split(",", 2);
+
+  	 mymap = L.map('mapid').setView([pos[0], pos[1]], 13);
+  	 mymap.on('click', onMapClick);
+  	 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+  	  	maxZoom: 18,
+  	  	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+  	  	'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+  	  	'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+  	  	id: 'mapbox.streets'
+  	}).addTo(mymap);
+  }, "jsonp");
+
+  var circle = L.circle([0, 0], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+  });
+
+  function onMapClick(e) {
+     circle
+      .setLatLng(e.latlng)
+      .setRadius($("#rayon_accident").val())
+      .addTo(mymap);
+  }
+</script>

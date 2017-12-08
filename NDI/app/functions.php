@@ -63,36 +63,47 @@ function get_soiree_info($id, $conn){
 }
 
 function get_event_info($id, $conn){
-	$stmt = $conn->prepare("SELECT date, coord_x, coord_y, description, type, FK_username FROM Evenement WHERE id=?");
-	$stmt->bind_param("s", $id);
-
-	$stmt->execute();
-
-	$date = "";
-	$coord_x = "";
-	$coord_y = "";
-	$description = "";
-	$type = "";
-	$FK_username = "";
-
-	$stmt->bind_result($date, $coord_x, $coord_y, $description, $type, $FK_username);
-
-	 /* Récupération des valeurs */
-	 $stmt->fetch();
-
-	if($date == NULL){
-		return array("error" => 1, "messageError" => "Evenement introuvable");
+	if($id = -1){
+		$stmt = $conn->prepare("SELECT date, coord_x, coord_y, description, type, FK_username, rayon FROM Evenement");
 	}
 	else{
-		return array("error" => 0,
-									"date"=>$date,
-									"long"=>$coord_x,
-									"lat"=>$coord_y,
-									"description"=>$description,
-									"type"=>$type,
-									"FK_username"=>$FK_username);
+		$stmt = $conn->prepare("SELECT date, coord_x, coord_y, description, type, FK_username, rayon FROM Evenement WHERE id=?");
+		$stmt->bind_param("s", $id);
 	}
 
+		$stmt->execute();
+
+		$date = "";
+		$coord_x = "";
+		$coord_y = "";
+		$description = "";
+		$type = "";
+		$FK_username = "";
+		$rayon = "";
+
+		$stmt->bind_result($date, $coord_x, $coord_y, $description, $type, $FK_username, $rayon);
+
+		$ret = array();
+		$i = 0;
+		/* Récupération des valeurs */
+		while ($stmt->fetch()) {
+				$ret[$i] = array("error" => 0,
+												"date"=>$date,
+												"long"=>$coord_x,
+												"lat"=>$coord_y,
+												"description"=>$description,
+												"type"=>$type,
+												"FK_username"=>$FK_username,
+												"rayon" => $rayon);
+				$i++;
+	   }
+
+		if($ret[0]["date"] == NULL){
+			return array("error" => 1, "messageError" => "Evenement introuvable");
+		}
+		else{
+			return $ret;
+		}
 }
 
 function add_user_to_db($data, $conn){
@@ -143,7 +154,7 @@ function add_event_to_db($data, $conn){
 	}
 
 
-	$stmt = $conn->prepare("INSERT INTO Evenement (date, coord_x, coord_y, rayon, description, type, FK_idUser) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	$stmt = $conn->prepare("INSERT INTO Evenement (date, coord_x, coord_y, description, type, FK_username, rayon) VALUES (?, ?, ?, ?, ?, ?, ?)");
 	$stmt->bind_param("sddisss", $da, $lo, $la, $r, $d, $t, $u);
 
 	// set parameters and execute
@@ -157,7 +168,12 @@ function add_event_to_db($data, $conn){
 	$t = $data["type"];
 	$res = $stmt->execute();
 
-	return array('error' => !$res, 'messageError' => "Erreur de l'ajout de l'évènement", 'messageSuccess' => "Evènement bien ajouté");
+	if($res == 0){
+		return array('error' => 1, 'messageError' => "Erreur lors de l'ajout de l'évènement", 'messageSuccess' => null);
+	}
+	else{
+		return array('error' => 0, 'messageError' => null, 'messageSuccess' => "L'évenement a bien été ajouté");
+	}
 }
 
 function add_soiree_to_db($data, $conn){
