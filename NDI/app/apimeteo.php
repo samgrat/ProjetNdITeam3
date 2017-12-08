@@ -19,10 +19,13 @@ function infoget($long, $lat, $params=null) {
     return $content;
 }
 
-$lat = 48.85341;
-$long = 2.3488;
+$lat =  43;
+$long = 0;
+$string2 = file_get_contents("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139");
 $string = "<iframe seamless width=\"888\" height=\"336\" frameborder=\"0\" src=\"http://www.infoclimat.fr/public-api/mixed/iframeSLIDE?_ll=". $lat .",". $long . "&_inc=WyJQYXJpcyIsIjQyIiwiMjk4ODUwNyIsIkZSIl0=&_auth=ABoAFwV7XX8EKVdgUiQHLlgwVGELfQEmAHwDYFg9AH1VPgNiVDQBZ18xVypUewcxUXwGZQE6UGBWPVUtDX8FZABqAGwFbl06BGtXMlJ9ByxYdlQ1CysBJgBiA2dYNQB9VTcDblQ3AX1fMlc8VHoHMVFmBmABIVB3VjRVNw1hBWQAZQBsBWNdPwRpVzdSfQcsWG5UZQs2ATAAMQMwWGEANlU%2BAzFUPwEwXzJXPFR6BzBRYwZmAT9Qa1YwVTYNZQV5AHwAHQUVXSIEK1d3UjcHdVh2VGELagFt&_c=2ec1f7704a082f63af6a553f7457f127\"></iframe>";
 ;
+
+var_dump($string2);
     // TODO recuperer les info une a une
 /*$arrayinfo = infoget("48.866667", "2.333333");
 
