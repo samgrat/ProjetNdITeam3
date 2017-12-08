@@ -50,6 +50,17 @@ crossorigin=""></script>
                 }).addTo(mymap);
               }, "jsonp");
 
+              {%for point in points%}
+              var circle = L.circle([{{point.lng}}, {{point.lat}}], {
+                  color: 'red',
+                  fillColor: '#f03',
+                  fillOpacity: 0.5,
+                  radius: {{point.rayon}}
+              });
+
+              circle.addTo(mymap);
+              {% endfor %}
+              
             </script>
 
 

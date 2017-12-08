@@ -1,0 +1,36 @@
+<section id="soiree" class="content-section text-center">
+	<div class="container">
+		<div class="row">
+          <div class="col-md-6">
+            <a href="#soiree" class="js-scroll-trigger">
+              <button type="button" id="but_minijeux" class="btn btn-primary btn-lg">Créer une soirée</button>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <section id="amis" class="content-section text-center" style="padding-top: 0;">
+<div class="container">
+  <h2> Historique des soirées</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Soirée</th>
+        <th>date</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      	{% for soiree in tabSoiree %}
+  		<tr>
+	        <td>{{soiree.nom}}</td>
+	        <td>{{soiree.date}}</td>
+      	</tr>
+		{% endfor %}   
+    </tbody>
+  </table>
+</div>
+</section> 
+          </div>           
+        </div>
+	</div>
+</section>

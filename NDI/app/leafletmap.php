@@ -41,7 +41,7 @@ function onMapClick(e) {
 	</form>
 
 	position:
-<div id="mapid" style="width: 600px; height: 400px;"</div>
+<div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
 	// changer le setView[] pour mettre la position de la map par default
 	var mymap = L.map('mapid').setView([51.505, -0.09], 13);

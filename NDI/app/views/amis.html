@@ -1,28 +1,50 @@
-<section id="amis" class="content-section text-center">
-	 <table class="table">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+ <link rel="stylesheet" type="text/css" href="css/amis.css">
+
+
+
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  
+
+  <section id="amis" class="content-section text-center">
+  <div class="container">
+    <h2>Mes Amis</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom d'utilisateur</th>
+          <th>Email</th>
+          <th>Taux de Sobriété</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for tab in friendsTab %}
+         <tr>
+          <td>{{tab.username}}</td>
+          <td>{{tab.email}}</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{tab.sobriete}}" aria-valuemin="0" aria-valuemax="100" style="width: {{tab.sobriete}}%">
+                {{tab.sobriete}}%
+              </div>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </section>
+
+
+
+  </body>
+</html>
