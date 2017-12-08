@@ -1,5 +1,11 @@
 <?php
 include("config.php");
+session_start();
+
+if(isset($_GET["disconnect"])){
+  session_destroy();
+  header("Location: index.php");
+}
 
 if(isset($_POST["pseudo"]) && isset($_POST["mdp"])){
   $stmt = $conn->prepare("SELECT pass FROM Users WHERE username=?");
