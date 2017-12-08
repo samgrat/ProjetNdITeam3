@@ -32,9 +32,33 @@
 	    		$action = $arr[1];
 	    		switch ($action) {
 	    			case 'add':
-	    				echo "adding event";
+	    				$data["date"] = $_POST["date"];
+						$data["lat"] = $_POST["lat"];
+						$data["long"] = $_POST["long"];
+						$data["description"] = $_POST["description"];
+						$data["type"] = $_POST["type"];
+						$data["user"] = $_POST["user"];
+						$data["rayon"] = $_POST["rayon"];
+
+	    				$res = add_event_to_db($data, $conn);
+	    				break;
+	  
+	    		}
+
+	    	case 'soiree':
+	    		$action = $arr[1];
+	    		switch ($action) {
+	    			case 'add':
+	    				$data["date"] = $_POST["date"];
+						$data["lat"] = $_POST["lat"];
+						$data["long"] = $_POST["long"];
+						$data["description"] = $_POST["description"];
+						$data["user"] = $_POST["user"];
+
+	    				$res = add_soiree_to_db($data, $conn);
 	    				break;
 
+	  
 	    		}
 
 	    }
@@ -42,7 +66,26 @@
 	}
 
 	if($_SERVER['REQUEST_METHOD'] == "GET"){
-		echo "getting ressource<br>";
+		 switch ($arr[0]) {
+	    	case 'user':
+	    		$id = $arr[1];
+	    				$res = get_user_info($id, $conn);
+	    				break;
+	    		}
+
+	    		break;
+	    	
+	    	case 'event':
+	    		$id = $arr[1];
+	    		$res = get_event_info($id, $conn);
+	    		break;
+	    		
+	    	case 'soiree':
+	    		$id = $arr[1];
+	    		$res = get_soiree_info($id, $conn);
+	    		break;
+
+	    }
 
 	}
 
