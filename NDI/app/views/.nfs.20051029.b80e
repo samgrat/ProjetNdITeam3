@@ -3,10 +3,14 @@
 	<div class="container">
 		<button type="button" class="btn btn-danger btn-lg" onclick="location.href = 'urgence.php';">URGENCE</button>
 		<img src="img/logo.png" style="height: 7vh" onclick="location.href = 'index.php';">
-		<button type="button" class="btn btn-secondary" onclick="location.href = 'connexion.php';">{{login}}</button>
+		{%if login %}
+		<button type="button" class="btn btn-secondary" onclick="location.href = 'dashboard.php';">{{login}}</button>
+		<button type="button" class="btn btn-secondary" onclick="location.href = 'connexionManager.php?disconnect';">Deconnexion</button>
+		{%else%}
+		<button type="button" class="btn btn-secondary" onclick="location.href = 'connexion.php';">Login</button>
+		{% endif %}
 	</div>
 </div>
 </nav>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
