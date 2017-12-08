@@ -86,7 +86,10 @@ foreach ($list[0] as $key2 => $value2) {
   }
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 59990e9dfce5b67a9bc7cc13af468d6e001e728a
     var_dump($temperature);
     var_dump($pression);
     var_dump($humidite);
