@@ -1,0 +1,8 @@
+.imagePuzzle{
+	height: 250px!important;
+	margin-top: 10px;
+}
+
+.imagePuzzle img{
+	height: 100%;
+}
