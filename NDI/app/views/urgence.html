@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<style type="text/css">
+  footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+</style>
+
+<body id="page-top">
+  <link rel="stylesheet" href="css/dashboard.css" />
+	<!-- Navigation -->
+
+	{% include "navbar.html" %}
+	<header class="masthead">
+    	<div class="intro-body">
+			<div class="container" style="float: right;
+max-width: 78%;">
+				<div class="row">
+					<div class="col-md-4 "><h1>SAMU 15</h1></div>
+  					<div class="col-md-4 "><h1>POLICE 17</h1></div>
+  				</div>
+  				<div class="row">
+  					<div class="col-md-4 "><h1>POMPIER 18</h1></div>
+  					<div class="col-md-4 "><h1>GENERAL 112</h1></div>
+					  	
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Footer -->
+	{% include "footer.html" %}
+
+</body>
+
+</html>

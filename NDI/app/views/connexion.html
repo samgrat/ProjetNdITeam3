@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body id="page-top">
+
+  <!-- Navigation -->
+<style type="text/css">
+  footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+</style>
+
+  {% include "navbar.html" %}
+
+
+  <header class="masthead">
+    <div class="intro-body">
+      {%if message %}
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="alert alert-danger" role="alert">
+            <strong>{{message}}</strong>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="container" style="font-family: 'Cabin'">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+            <form role="form" onsubmit="return false">
+              <div class="form-group">
+                <input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
+              </div>
+              <div class="form-group">
+               <input type="password" class="form-control" id="mdp" placeholder="Mot de passe"><br>
+             </div>
+             Nouveau utilisateur ?
+             <a  href="inscription.php">Créer un compte</a><br><br>
+             <button type="submit" id="submit" class="btn btn-default">connexion</button>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ </header>
+
+
+
+
+
+ <!-- Footer -->
+ {% include "footer.html" %}
+
+ <script type="text/javascript" src="../js/inscription.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+ <script>
+    //Tentative de conenxion
+    $(document).ready(function(){
+
+     $("#submit").click(function(){
+
+       $.post(
+         'connexionManager.php',
+         {
+           pseudo : $("#pseudo").val(),
+           mdp : $("#mdp").val()
+         },
+
+         function(data){
+           if(data == "1"){
+             location.href = "index.php";
+           }
+           else{
+             location.href = "connexion.php?error=Nom de compte ou mot de passe non valide";
+           }
+         },
+
+         'text'
+         );
+
+     });
+   });
+ </script>
+
+</body>
+</html>

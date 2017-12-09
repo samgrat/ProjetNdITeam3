@@ -1,0 +1,16 @@
+.form-control {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+footer {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+}
+
+#mapid {
+	margin-top: 10px;
+	height: 400px;
+	width: 100%;
+}

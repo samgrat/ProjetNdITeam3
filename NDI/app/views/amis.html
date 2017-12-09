@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+ <link rel="stylesheet" type="text/css" href="css/amis.css">
+
+
+
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  
+
+  <section id="amis" class="content-section text-center">
+  <div class="container">
+    <div class="row">
+      <h2>Recherche d'amis</h2>
+      <div class="container">  
+        <div class="search">
+        <input type="text" id="friend" class="form-control input-sm" maxlength="64" placeholder="Search"/>
+        <input type="button" value="Chercher" class="btn btn-default" onclick="searchFriend();">
+        </div>
+      </div>
+    </div>
+    
+  <div class="row">
+    <h2 >Mes Amis</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom d'utilisateur</th>
+          <th>Email</th>
+          <th>Taux de Sobriété</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for tab in friendsTab %}
+         <tr>
+          <td>{{tab.username}}</td>
+          <td>{{tab.email}}</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{tab.sobriete}}" aria-valuemin="0" aria-valuemax="100" style="width: {{tab.sobriete}}%">
+                {{tab.sobriete}}%
+              </div>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>  
+  </div>
+    
+  </section>
+  </body>
+  <script type="text/javascript">
+    function searchFriend(){
+      var name = document.getElementById('friend').value;
+      alert(name);
+    }
+  </script>
+</html>

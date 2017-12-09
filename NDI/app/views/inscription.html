@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body id="page-top">
+
+  <!-- Navigation -->
+
+
+  {% include "navbar.html" %}
+
+
+ <header class="masthead">
+    <div class="intro-body">
+      {%if message %}
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="alert alert-danger" role="alert">
+            <strong>{{message | raw}}</strong>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+  <form role="form" onsubmit="return false">
+    <div class="form-group">
+      <input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Adresse mail">
+
+    </div>
+    <div class="form-group">
+       <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
+    </div>
+  <div class="form-group">
+    <input type="password" class="form-control" id="confirm_mdp" placeholder="Mot de passe">
+  </div>
+  <button type="submit" id="submit" class="btn btn-default" onclick="return false">Valider</button>
+     </div>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+
+
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+    <script type="text/javascript" src="../js/inscription.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script>
+    //Tentative d'inscription
+    $(document).ready(function(){
+
+       $("#submit").click(function(){
+
+           $.post(
+               'api.php?user/add',
+               {
+                   email : $("#email").val(),
+                   pseudo : $("#pseudo").val(),
+                   mdp : $("#mdp").val(),
+                   confirm_mdp : $("#confirm_mdp").val()
+               },
+
+               function(data){
+                 var json_obj = $.parseJSON(data);
+
+                 if(json_obj["error"] == 0){
+                   location.href = "inscription.php?success=" + json_obj["messageSuccess"];
+                 }
+                 else{
+                   location.href= "inscription.php?error=" +  json_obj["messageError"];
+                 }
+               },
+
+               'text'
+            );
+
+       });
+   });
+   </script>
+
+  </body>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="./css/jeuxPuzzle.css" rel="stylesheet">
+
+{% include "header.html" %}
+
+
+<body id="page-top" onLoad="charge_p();">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+
+  <header class="masthead">
+  <div class="intro-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 imagePuzzle">
+        <A HREF="javaScript:cliq(0);"><IMG SRC="./img/0pls.jpg" class="image_puzzle"></A>
+      </div>
+      <div class="col-md-6 imagePuzzle">
+        <A HREF="javaScript:cliq(1);"><IMG SRC="./img/1pls.jpg" class="image_puzzle"></A>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 imagePuzzle">
+        <A HREF="javaScript:cliq(2);"><IMG SRC="./img/2pls.jpg" class="image_puzzle"></A>
+      </div>
+      <div class="col-md-6 imagePuzzle">
+        <A HREF="javaScript:cliq(3);"><IMG  SRC="./img/3pls.jpg" class="image_puzzle"></A>
+      </div>
+    </div>
+
+    <input type="button" value="Voir le Puzzle" class="btn btn-default" onClick="normal();">
+  </div>
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+  </body>
+
+  <script language="JavaScript">
+    var imap=new Array(5);
+    for (var i=0;i<5;i++) { imap[i]=new Image();imap[i].src='./img/'+(i)+'pls.jpg'}
+
+    //********** puzzle
+    var table=new Array(5);
+
+    for (var i=0;i<5;i++) table[i]=-1;
+    function verify(n)
+    {
+     for ( var i=0;i<5;i++) if (table[i]==n) return false;
+     return true;
+    }
+
+    function charge_p()
+    {for ( var i=0;i<5;i++)
+      {var flag=false
+       while (!flag)
+       { var x=Math.floor(Math.random()*5);
+         flag = verify(x);
+       }
+      table[i]=x;
+      }
+     melange();
+    }
+
+    function normal() {
+     for(var i=0;i<5;i++)
+      if (document.images[i].class=='image_puzzle') {
+        document.images[i].src='./img/'+i+'pls.jpg';
+      }
+     if (i==5) setTimeout('melange()',2000);
+
+    }
+
+    function melange() {
+     for(var i=0;i<5;i++)
+      if (document.images[i].class=='image_puzzle') {
+        document.images[i].src='./img/'+table[i]+'pls.jpg';
+      }
+    }
+
+    var fl_clic=false;var ima1=-1,ima2=-1,n_memo=-1;
+
+    function test(){
+     for(var i=0;i<5;i++)
+        if (table[i]!=i) return false;
+     return true;
+    }
+
+    function cliq(n){
+      if (!fl_clic)
+         {ima1=table[n];
+          fl_clic=true;
+          n_memo=n;
+         }
+      else {
+            ima2=table[n];
+            table[n]=ima1;
+            table[n_memo]=ima2;
+            fl_clic=false;
+            if (document.images[i].class=='image_puzzle'){
+              document.images[n_memo].src='./img/'+ima2+'pls.jpg';
+              document.images[n].src='./img/'+ima1+'pls.jpg';
+            }
+           }
+       if (test()) alert('Vous avez Gagné !');
+    }
+  </script>
+
+</html>

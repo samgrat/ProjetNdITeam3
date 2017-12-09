@@ -1,0 +1,51 @@
+
+
+
+
+<link rel="stylesheet" href="css/dashboard.css" />
+
+ 
+{% include "header.html" %}
+  
+
+
+<body id="page-top">
+
+  <!-- Navigation -->
+
+  {% include "navbar.html" %}
+<section id="soiree" class="content-section text-center">
+
+  	<main class="container pt-5">
+        <table class="table table-bordered table-definition mb-5">
+            
+                <tr>
+                    <th>Ajouter</th>
+                    <th>Pseudo</th>
+                    <th>Sobriete</th>
+                </tr>
+            
+            <tbody>
+            	{% for tab in friendsTab %}
+                <tr>
+                    <td>
+                        <label class="custom-control custom-checkbox">
+                            <input onchange="remplissageAuto(this);" value="1" type="checkbox" name="" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                        </label>
+                    </td>
+                    <td id="{{tab.username}}">{{tab.username}}</td>
+                    <td>{{tab.sobriete}}</td>
+                </tr>
+                {% endfor %}   
+            </tbody>
+        </table>
+
+    </main>
+    <button onclick="addUser()" class="btn btn-primary">Add User</button>
+</section>
+	
+</body>
+<script type="text/javascript" src="js/creationsoiree.js"></script>
+    <!-- Footer -->
+    {% include "footer.html" %}
